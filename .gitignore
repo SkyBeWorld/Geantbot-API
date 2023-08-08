@@ -1,0 +1,10 @@
+node_modules
+config.json
+.env
+*.zip
+package-lock.json
+.replit
+*.nix
+.idea
+user.json
+JSON

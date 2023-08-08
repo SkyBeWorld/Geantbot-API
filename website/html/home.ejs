@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Geantbot API</title>
+	<meta name="viewport", content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="icon" type="image/png" href="/assets/GeantBotor.png">
+</head>
+<body>
+	<div class="contenair">
+		<div class="navbar">
+			<img src="./assets/GeantBotor.png" width="100px" height="100px" onclick="window.location.href='/'" class="logo">
+			<nav>
+				<ul id="menuList">
+					<li>
+						<button class="navbut" onclick="window.location.href='https://github.com/geantworld-inc/Geantbot'">github</button>
+					</li>
+				</ul>
+			</nav>
+			<img src="assets/menu.png" class="menu" onclick="togglemenu()">
+		</div>
+	</div>
+    <div class="loginPage">
+        <form class="settings_form" action="/" method="post">
+            <section class="main-settings">
+                <div class="container">
+                    <h1>Welcome to Geantbot API system (closed beta)</h1>
+                    <h3>If you have an account, please type your email and password</h3>
+                    <h3>If you don't have an account please contact GeantWorld</h3>
+                    <p>If you are not a admin+, you will get access just to read only!</p>
+                    <h3>This token will be valid for 60 minutes</h3>
+                    <h3>Use postman for read the api</h3>
+                    <h1>DO NOT SHARE YOUR TOKEN !</h1>
+                    <br>
+                    <div class="line"></div>
+                    <br>
+                    <h2>Email</h2>
+                    <br>
+                    <input class="email" id="email" type="email" name="email">
+                    <br>
+                    <div class="line"></div>
+                    <br>
+                    <h2>Password</h2>
+                    <br>
+                    <input class="password" id="password" type="password" name="password">
+                    <br>
+                    <div class="line"></div>
+                    <br>
+                    <input class="submit" type="submit" value="Login">
+                    <br>
+                    <div class="line"></div>
+                </div>
+        </form>
+        </section>   
+        <% if (ok) { %>
+            <p class="messages" style="color: green;">You token is <%= token %></p>
+        <% } %>
+        <% if (error) { %>
+            <p class="messages" style="color: red;">Incorrect ID!</p>
+        <% } %>    
+    </div>
+	<br><br><br><br>
+	<div class="footer">
+		<br>
+		<h2 id="Geantworld">GeantWorld Inc. - Copyright 2023</h2>
+		<br>
+		<p>Geantbot is managed by GeantWorld Inc. - <a href="https://github.com/geantworld-inc/Geantbot">Opensource</a></p>
+		<br>
+	</div>
+	<script>
+		var menuList = document.getElementById("menuList")
+
+		menuList.style.maxHeight = "0px";
+
+		function togglemenu() {
+			if (menuList.style.maxHeight == "0px") {
+				menuList.style.maxHeight = "180px";
+			} else {
+				menuList.style.maxHeight = "0px";
+			}
+		}
+	</script>
+</body>
+</html>
