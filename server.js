@@ -73,7 +73,7 @@ app.post('/', async(req, res) => {
     const token = jwt.sign({
         id: user._id,
         roles: user.roles,
-    }, jwtPrivateKey, { expiresIn: "60m" })
+    }, jwtPrivateKey)
 
     const args = {
         ok: true,
