@@ -42,14 +42,14 @@
                     <br>
                     <div class="line"></div>
                     <br>
-                    <input class="submit" type="submit" value="Login">
+                    <input class="submit" type="submit" value="Get token">
                     <br>
                     <div class="line"></div>
                 </div>
         </form>
         </section>   
         <% if (ok) { %>
-            <p class="messages" style="color: green;">You token is <%= token %></p>
+            <p class="messages" style="color: green;">You token is <br><%= token %></p>
         <% } %>
         <% if (error) { %>
             <p class="messages" style="color: red;">Incorrect ID!</p>
