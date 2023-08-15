@@ -35,7 +35,7 @@ app.get('/', async(req, res) => {
         token: null,
     }
 
-    res.send("ok")
+    res.json({ "status": "ok" })
 })
 
 app.listen(8080, () => console.log('Server Started'))
