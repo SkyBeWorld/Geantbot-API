@@ -35,53 +35,7 @@ app.get('/', async(req, res) => {
         token: null,
     }
 
-    res.render(__dirname + "/website/html/home.ejs", args)
-})
-
-app.post('/', async(req, res) => {
-    if (!req.body) return res.redirect(`/`)
-
-    const users = [config]
-
-    let user = users.find(u => u.email === req.body.email)
-    if (!user) {
-        const args = {
-            ok: false,
-            error: true,
-            token: null
-        }
-    
-        res.render(__dirname + "/website/html/home.ejs", args)
-
-        return
-    }
-
-    const valid = await users.find(u => u.password === req.body.password)
-    if (!valid) {
-        const args = {
-            ok: false,
-            error: true,
-            token: null
-        }
-    
-        res.render(__dirname + "/website/html/home.ejs", args)
-
-        return
-    }
-
-
-    const token = jwt.sign({
-        id: user._id,
-        roles: user.roles,
-    }, jwtPrivateKey)
-
-    const args = {
-        ok: true,
-        error: false,
-        token: token
-    }
-
-    res.render(__dirname + "/website/html/home.ejs", args)
+    res.send("ok")
 })
 
 app.listen(8080, () => console.log('Server Started'))
