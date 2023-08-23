@@ -27,7 +27,7 @@ router.post('/get-token', async (req, res) => {
     const token = jwt.sign({
         id: user._id,
         roles: user.roles,
-    }, jwtPrivateKey, { expiresIn: "60m" })
+    }, jwtPrivateKey)
 
     res.send({
         ok: true,
@@ -35,7 +35,7 @@ router.post('/get-token', async (req, res) => {
     })
 })
 
-router.get('/news', async (req, res) => {
+router.get('/news', [auth, viewer], async (req, res) => {
     try {
         const news = await schema.find()
         res.json(news)
@@ -44,7 +44,7 @@ router.get('/news', async (req, res) => {
     }
 })
 
-router.get('/news/:id', getAllnews, (req, res) => {
+router.get('/news/:id', [auth, viewer, getAllnews], (req, res) => {
     res.json(res.news)
 })
 
