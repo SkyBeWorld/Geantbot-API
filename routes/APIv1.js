@@ -6,7 +6,9 @@ const { jwtPrivateKey } = require("../config.json")
 const bscypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const auth = require("../middleware/auth");
-const { admin, editor, viewer } = require("../middleware/roles");   
+const tok = require("../middleware/ensureToken")
+const { admin, editor, viewer } = require("../middleware/roles"); 
+
 
 router.get('/', async (req, res, next) => {
     res.json({ API_v1: "Operationnal" })
@@ -35,17 +37,30 @@ router.post('/get-token', async (req, res) => {
     })
 })
 
-router.get('/news', [auth, viewer], async (req, res) => {
-    try {
-        const news = await schema.find()
-        res.json(news)
-    } catch (error) {
-        res.status(500).json({ message: err.message })
-    }
+router.get('/news', tok, async (req, res) => {
+    jwt.verify(req.token, jwtPrivateKey, async function(err, data) {
+        if (err) {
+            res.sendStatus(403)
+        } else {
+            try {
+                const news = await schema.find()
+                res.json(news)
+            } catch (error) {
+                res.status(500).json({ message: err.message })
+            }
+        }
+    })
+
 })
 
-router.get('/news/:id', [auth, viewer, getAllnews], (req, res) => {
-    res.json(res.news)
+router.get('/news/:id', [tok, getAllnews], (req, res) => {
+    jwt.verify(req.token, jwtPrivateKey, async function(err, data) {
+        if (err) {
+            res.sendStatus(403)
+        } else {
+            res.json(res.news)
+        }
+    })
 })
 
 router.post('/news', [auth, editor], async (req, res) => {

@@ -5,7 +5,7 @@ module.exports = (req, res, next) => {
     const token = req.header("auth-token");
     if (!token) return res.status(401).send({
         ok: false,
-        error: "Access denied. No token provided"
+        error: "Access denied. The token need admins perms"
     });
 
     try {
